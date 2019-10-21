@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
   std::size_t r, c;
   std::istringstream rows{argv[1]}, columns{argv[2]};
-  rows >> r, columns >> c;
+  rows >> r, columns >> c; // dimensions are read from command line arguments
 
   std::vector<double> m;
   

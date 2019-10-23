@@ -47,7 +47,7 @@ T transpose(const T &array,const s r,const s c){
   T t=array;
   for (auto i = 0lu; i < c; ++i) {
     for (auto j = 0lu; j < r; ++j){
-	  t.at(i*r+j)=array[i+j*c];
+	  t[i*r+j]=array[i+j*c];
     }
   } 
   return t;

@@ -135,8 +135,8 @@ void date::sub_day(){
 
 int main() {
 
-	int day{3};
-	months month{months::jan};
+	int day{4};
+	months month{months::mar};
 	int year{1943};
 	// test date
 	

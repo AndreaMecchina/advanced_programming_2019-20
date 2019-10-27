@@ -133,6 +133,11 @@ void date::sub_day(){
 			_day -= 1;}}
 			// subtracts one day
 
+bool operator==(const date& lhs, const date& rhs);
+bool operator!=(const date& lhs, const date& rhs);
+std::ostream& operator<<(std::ostream& os, const date& date);
+bool is_leap(const int y);
+
 int main() {
 
 	int day{4};
@@ -140,24 +145,79 @@ int main() {
 	int year{1943};
 	// test date
 	
-  	date date(day, month, year);
+  	date date1(day, month, year);
   	std::cout << "Current date: ";
-  	date.print();
+  	date1.print();
   	
+  	if(is_leap(date1.year()))
+  		std::cout << date1.year() << " is a leap year" << std::endl;
+  	else	
+  		std::cout << date1.year() << " is not a leap year" << std::endl;
+  		// _year is private 
+  	
+  	date date2(4, months::mar, 1944);
+  	std::cout << "Another date: ";
+    date2.print();
+  	// another date
+  	
+  	if(is_leap(date2.year()))
+  		std::cout << date2.year() << " is a leap year" << std::endl;
+  	else	
+  		std::cout << date2.year() << " is not a leap year" << std::endl;
+	
+	if(date1 == date2)
+  		std::cout << "Operator == returns true" << std::endl;
+  	
+  	if(date1 != date2)
+  		std::cout << "Operator != returns true" << std::endl;
+  		
   	int n{0};
   	std::cout << "Insert a number of days: ";
 	std::cin >> n;
 	// if negative goes back in time
 	
 	if(n >= 0){
-  		date.add_days(n);
+  		date1.add_days(n);
   		std::cout << "Forward date: ";
-		date.print();
+		date1.print();
   	}else{ 
-  		date.sub_days(n);
+  		date1.sub_days(n);
   		std::cout << "Backward date: ";
-  		date.print();}
+  		date1.print();}
   		// leap years are neglected
-  		
+	
+	if(date1 == date2)
+  		std::cout << "Operator == returns true" << std::endl;
+  	
+  	if(date1 != date2)
+  		std::cout << "Operator != returns true" << std::endl;
+  	
+  	std::cout << "Alternative print: " << date1 << std::endl;
+  	
   return 0;
+}
+
+bool operator==(const date& lhs, const date& rhs)
+{
+    return lhs.day()   == rhs.day()   &&
+           lhs.month() == rhs.month() &&
+           lhs.year()  == rhs.year();
+}
+
+bool operator!=(const date& lhs, const date& rhs)
+{
+    return lhs.day()   != rhs.day()   ||
+           lhs.month() != rhs.month() ||
+           lhs.year()  != rhs.year();
+}
+
+std::ostream& operator<<(std::ostream& os, const date& date) 
+{
+	os << date.day() << "/" << static_cast<int>(date.month()) << "/" << date.year();
+	return os;
+} // _day, _month, _year are private
+
+bool is_leap(const int y)
+{
+	return (y%4==0 && y%100!=0) || (y%400==0);
 }

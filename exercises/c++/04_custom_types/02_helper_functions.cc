@@ -202,7 +202,7 @@ bool operator==(const date& lhs, const date& rhs)
     return lhs.day()   == rhs.day()   &&
            lhs.month() == rhs.month() &&
            lhs.year()  == rhs.year();
-}
+} // operator overloading
 
 bool operator!=(const date& lhs, const date& rhs)
 {

@@ -27,7 +27,7 @@ int main() {
 	Vector<double> v{10};
 
 	for (auto i = 0u; i < v.size(); ++i)
-    v[i] = i;
+    	v[i] = i;
 	std::cout << v << std::endl;
 
   	Vector<double>* pv{&v};

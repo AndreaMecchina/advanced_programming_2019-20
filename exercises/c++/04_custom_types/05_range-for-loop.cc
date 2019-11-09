@@ -28,6 +28,13 @@ std::ostream& operator<<(std::ostream& os, const Vector<T>& v) {
 	// range-for-loop
 	for (auto i = v.begin(); i < v.end(); ++i)
 	  os << "v[" << i-v.begin() << "] = " << *i << std::endl;
+	  
+	//  alternative:
+	/*
+	 *	for (auto i : v)
+	 *		os << "v[" << i << "] = " << i << std::endl;
+	 */
+	
 	return os;
 }
 

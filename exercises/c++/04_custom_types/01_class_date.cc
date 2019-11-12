@@ -18,22 +18,17 @@ class date {
 	int day() const {return _day;}	
 	months month() const {return _month;}
 	int year() const {return _year;}
-		
-	void print() const {
-		day(); month(); year();
-    	std::cout << _day << "/" << static_cast<int>(_month) << "/" << _year << std::endl;}
-    	// prints the date
 			
 	void add_days(int n){
-		day(); month(); year();
 		for (auto i = 0; i < n; i++)
 			add_day();}	
 			
 	void sub_days(int n){
-		day(); month(); year();
 		for (auto i = 0; i < -n; i++)
 			sub_day();}
-					
+				
+	friend std::ostream& operator<< (std::ostream& os, const date& date);
+	
 	private:
 	void add_day();
 	void sub_day();
@@ -48,7 +43,6 @@ date::date(const int day,
 	// constructor
 	
 void date::add_day(){
-		day(); month(); year();
 		
 		switch(_day){
 		case 28:
@@ -98,7 +92,6 @@ void date::add_day(){
 			// adds one day
 			
 void date::sub_day(){
-		day(); month(); year();
 		
 		switch(_day){
 		case 1:
@@ -133,6 +126,14 @@ void date::sub_day(){
 			_day -= 1;}}
 			// subtracts one day
 
+std::ostream& operator<< (std::ostream& os, const date& date) {
+  	os << date._day << "/" 
+  	   << static_cast<int>(date._month) << "/" 
+  	   << date._year;
+	return os;
+}
+// prints the date
+
 int main() {
 
 	int day{4};
@@ -141,8 +142,7 @@ int main() {
 	// test date
 	
   	date date(day, month, year);
-  	std::cout << "Current date: ";
-  	date.print();
+  	std::cout << "Current date: " << date << std::endl;
   	
   	int n{0};
   	std::cout << "Insert a number of days: ";
@@ -151,12 +151,10 @@ int main() {
 	
 	if(n >= 0){
   		date.add_days(n);
-  		std::cout << "Forward date: ";
-		date.print();
+  		std::cout << "Forward date: " << date << std::endl;
   	}else{ 
   		date.sub_days(n);
-  		std::cout << "Backward date: ";
-  		date.print();}
+  		std::cout << "Backward date: " << date << std::endl;}
   		// leap years are neglected
   		
   return 0;

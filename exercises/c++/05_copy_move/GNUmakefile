@@ -1,7 +1,7 @@
 SRC = 05_linked_list.cc
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=c++14 -I 
+CXXFLAGS = -Wall -Wextra -std=c++14
 
 EXE = $(SRC:.cc=.x)
 
